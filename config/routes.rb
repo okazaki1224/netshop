@@ -8,68 +8,27 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
 
-
-  namespace :public do
-    resources :addresses,only:[:index, :edit, :update, :destroy, :create]
-    #get 'addresses/index'
-    #get 'addresses/edit'
-    #get 'addresses/create'
-    #get 'addresses/update'
-    #get 'addresses/destroy'
-  end
-  namespace :public do
-    resources :orders,only:[:new, :index, :create, :show]
-    #get 'orders/new'
-    #get 'orders/index'
-    #get 'orders/create'
-    #get 'orders/show'
-    resources :orders,only:[:confirm, :complete] do
-      collection do
-        post 'confirm'
-      end
-      collection do
-        get 'complete'
-      end
-    end
-  end
-  namespace :public do
-    resources :cart_items,only:[:index, :update, :destroy, :create]
-    #get 'cart_items/index'
-    #get 'cart_items/update'
-    #get 'cart_items/destroy'
-    #get 'cart_items/create'
-    resources :cart_items,only:[:delete_all] do
-      collection do
-        delete 'destroy_all'
-      end
-    end
-  end
-  namespace :public do
-    get 'customers/my_page' => 'customers#show', as:"my_page"
-    get 'customers/information/edit' => 'customers#edit'
-    get 'customers/information' => 'customers#update'
-    #get 'customers/unsubscribe' => 'customers#unsubscribe'
-    #get 'customers/withdraw' => 'customers#withdraw'
-    resources :customers,only:[:unsubscribe, :withdraw] do
-      collection do
-        get 'unsubscribe'
-      end
-      collection do
-        patch 'withdraw'
-      end
-    end
-  end
-  namespace :public do
+  scope module: :public do
     resources :items, only:[:index, :show]
-    #get 'items/index'
-    #get 'items/show'
+    resources :cart_items,only:[:index, :update, :destroy, :create]
+    resources :orders,only:[:new, :index, :create, :show]
+    resources :addresses,only:[:index, :edit, :update, :destroy, :create]
   end
-  namespace :public do
-    #get 'homes/top'
-    #get 'homes/about'
-    root to: 'homes#top'
-    get '/about' => 'homes#about',as:'about'
-  end
+
+    root to: 'public/homes#top'
+    get '/about' => 'public/homes#about'
+
+    post '/orders/confirm' => 'public/orders#confirm'
+    get '/orders/complete' => 'public/orders#complete'
+
+    delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
+
+    get 'customers/my_page' => 'public/customers#show', as:"my_page"
+    get 'customers/information/edit' => 'public/customers#edit'
+    get 'customers/information' => 'public/customers#update'
+    get 'customers/unsubscribe' => 'public/customers#unsubscribe'
+    get 'customers/withdraw' => 'public/customers#withdraw'
+
 
 
 
