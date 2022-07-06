@@ -1,4 +1,34 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    patch 'order_details/update'
+  end
+  namespace :admin do
+    get 'orders/show'
+    patch 'orders/update'
+  end
+  namespace :admin do
+    get 'customers/index'
+    get 'customers/show'
+    get 'customers/edit'
+    patch 'customers/update'
+  end
+  namespace :admin do
+    get 'genres/index'
+    post 'genres/create'
+    get 'genres/edit'
+    patch 'genres/update'
+  end
+  namespace :admin do
+    get 'items/index'
+    get 'items/new'
+    post 'items/create'
+    get 'items/show'
+    get 'items/edit'
+    patch 'items/update'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -25,9 +55,9 @@ Rails.application.routes.draw do
 
     get 'customers/my_page' => 'public/customers#show', as:"my_page"
     get 'customers/information/edit' => 'public/customers#edit'
-    get 'customers/information' => 'public/customers#update'
+    patch 'customers/information' => 'public/customers#update'
     get 'customers/unsubscribe' => 'public/customers#unsubscribe'
-    get 'customers/withdraw' => 'public/customers#withdraw'
+    patch 'customers/withdraw' => 'public/customers#withdraw'
 
 
 
