@@ -1,42 +1,43 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    patch 'order_details/update'
-  end
-  namespace :admin do
-    get 'orders/show'
-    patch 'orders/update'
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    patch 'customers/update'
-  end
-  namespace :admin do
-    get 'genres/index'
-    post 'genres/create'
-    get 'genres/edit'
-    patch 'genres/update'
-  end
-  namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    post 'items/create'
-    get 'items/show'
-    get 'items/edit'
-    patch 'items/update'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  devise_for :customers,skip: [:passwords], controllers: {
+    devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
+
+devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
 
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
+  namespace :admin do
+   resources :order_details, only:[:update]
+    #patch 'order_details/update'
+
+   resources :orders, only:[:show, :update]
+    #get 'orders/show'
+    #patch 'orders/update'
+
+   resources :customers, only:[:index, :show, :edit, :update]
+    #get 'customers' => 'customers#index'
+    #get 'customers/show'
+    #get 'customers/edit'
+    #patch 'customers/update'
+
+   resources :genres, only:[:index, :create, :edit, :update]
+    #get 'genres' => 'genres#index'
+    #post 'genres/create'
+    #get 'genres/edit'
+    #patch 'genres/update'
+
+   resources :genres, only:[:index, :new, :create, :show, :edit, :update]
+    #get 'items' => 'items#index'
+    #get 'items/new'
+    #post 'items/create'
+    #get 'items/show'
+    #get 'items/edit'
+    #patch 'items/update'
+
+    get 'homes/top'
+  end
 
   scope module: :public do
     resources :items, only:[:index, :show]
