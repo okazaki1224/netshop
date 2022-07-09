@@ -5,6 +5,7 @@
     <th>商品ID</th>
     <th>商品名</th>
     <th>税抜価格</th>
+    <th>商品説明</th>
     <th>ジャンル</th>
     <th>ステータス</th>
   </tr>
@@ -12,13 +13,19 @@
   <tr>
     <td><%= item.id %></td>
     <td>
-      <% link_to admin_items_path(@item.id) do %>
+      <%= link_to admin_item_path(item.id) do %>
         <%= item.name %>
       <% end %>
     </td>
     <td><%= item.price %></td>
-    <td><%= item.genre %></td>
-    <td></td>
+    <td><%= item.introduction %></td>
+    <td><%= item.genre.name %></td>
+    <td><% if item.is_active==true %>
+        販売中
+        <% else%>
+        販売停止中
+        <% end %>
+    </td>
   </tr>
   <% end %>
 </table>

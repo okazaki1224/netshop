@@ -19,15 +19,19 @@
   <tr>
     <td><h4>ジャンル</h4></td>
     <td><%= f.collection_select(:genre_id,@genres,:id,:name) %></td>
-    
+
   </tr>
   <tr>
     <td><h4>税抜価格</h4></td>
-    <td><%= f.number_field :price %>円</td>
+    <td><%= f.number_field :price %></td>
   </tr>
   <tr>
     <td><h4>販売ステータス</h4></td>
-   
+    <td>
+      <%= f.label:is_active, "販売中", {value:true, style:"display:inline-box;"} %>
+      <%= f.radio_button:is_active, true %>
+      <%= f.label:is_active, "販売停止中", {value:false, style:"display:inline-box;"} %>
+      <%= f.radio_button:is_active, false %>
     </td>
   </tr>
 </table>

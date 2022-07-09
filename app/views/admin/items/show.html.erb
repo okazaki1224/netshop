@@ -1,2 +1,36 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<h1>商品詳細</h1>
+<p>左４くらい使って画像スペースにする</p>
+<%= image_tag @item.image.variant(resize_to_limit:[200,200]) %>
+
+<p>右８使ってテーブル</p>
+
+<table>
+  <tr>
+    <td><h4>商品名</h4></td>
+    <td><%= @item.name %></td>
+  </tr>
+  <tr>
+    <td><h4>商品説明</h4></td>
+    <td><%= @item.introduction %></td>
+  </tr>
+  <tr>
+    <td><h4>ジャンル</h4></td>
+    <td><%= @item.genre.name %></td>
+  </tr>
+  <tr>
+    <td><h4>(税抜価格)</h4></td>
+    <td>(<%= @item.price %>)円</td>
+  </tr>
+  <tr>
+    <td><h4>販売ステータス</h4></td>
+    <td>
+      <% if @item.is_active==true %>
+        販売中
+      <% else%>
+        販売停止中
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<%= link_to "編集する緑色",edit_admin_item_path(@item.id) %>
