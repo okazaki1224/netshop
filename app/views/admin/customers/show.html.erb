@@ -29,14 +29,7 @@
     <td>会員ステータス</td>
     <td><%= @customer.is_deleted %></td>
   </tr>
-  <tr>
-    <td></td>
-    <td>
-      <%= link_to "編集する緑色",edit_admin_customer_path(@customer.id) %>
-    </td>
-    <td>
-      <%= link_to "注文履歴一覧を見る青色",admin_order_path(@customer.id) %>
-    </td>
-  </tr>
 </table>
 
+<%= link_to "編集する緑色",edit_admin_customer_path(@customer.id) %>
+<%= link_to "注文履歴一覧を見る青色",admin_order_path(@customer.id) %>

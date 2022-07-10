@@ -1,9 +1,10 @@
 class Admin::CustomersController < ApplicationController
   def index
+    @customers=Customer.all
   end
 
   def show
-    @user=User.find(params[:id])
+    @customer=Customer.find(params[:id])
   end
 
   def edit
