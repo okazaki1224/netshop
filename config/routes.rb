@@ -36,7 +36,8 @@ devise_for :customers,skip: [:passwords], controllers: {
     #get 'items/edit'
     #patch 'items/update'
 
-    get 'homes/top'
+    #get 'homes/top'
+    root to: 'homes#top'
   end
 
   scope module: :public do

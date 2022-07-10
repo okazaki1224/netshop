@@ -1,6 +1,7 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items=Item.all
+    @items=Item.page(params[:page]).per(3)
+    #ページャ導入により.allから書き換え
     #@genre=Genre.find(params[:id])
   end
 
@@ -26,14 +27,11 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item=Item.find(params[:id])
-
     if @item.update(item_params)
       redirect_to admin_item_path(@item.id)
     else
-
       render :edit
     end
-
   end
 
   private
