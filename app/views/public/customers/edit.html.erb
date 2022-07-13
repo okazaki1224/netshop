@@ -1,2 +1,43 @@
-<h1>Public::Customers#edit</h1>
-<p>登録情報編集画面</p>
+<h1>登録情報編集</h1>
+<%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
+ <table>
+    <tr>
+      <td><h4>氏名</h4></td>
+      <td><%= f.text_field :last_name %></td>
+      <td><%= f.text_field :first_name %></td>
+    </tr>
+    <tr>
+      <td><h4>フリガナ</h4></td>
+      <td><%= f.text_field :last_name_kana %></td>
+      <td><%= f.text_field :first_name_kana %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><h4>郵便番号</h4></td>
+      <td><%= f.number_field :postal_code %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><h4>住所</h4></td>
+      <td><%= f.text_field :address %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><h4>電話番号</h4></td>
+      <td><%= f.number_field :telephone_number %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><h4>メールアドレス</h4></td>
+      <td><%= f.text_field :email %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit '編集内容を保存緑色' %></td>
+      <td></td>
+      <td><%= link_to '退会する',customers_unsubscribe_path %></td>
+    </tr>
+ </table>
+
+ <% end %>

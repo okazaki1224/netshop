@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
-  #def newとdef createをコメントアウトした。
-  #レジストレーションのコントローラはコメントアウトされている間は自動でデータの授受をしてくれるが、
-  #何かを書き込んでしまうと手動の整備が必要になるため基本的に触らない。
+
   #def new
   #end
 

@@ -16,7 +16,7 @@ devise_for :customers,skip: [:passwords], controllers: {
     #get 'orders/show'
     #patch 'orders/update'
 
-   resources :customers, only:[:index, :show, :edit, :update]
+   resources :customers, only:[:index, :edit, :update]
     #get 'customers' => 'customers#index'
     #get 'customers/show'
     #get 'customers/edit'
