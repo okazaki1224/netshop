@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items=Item.page(params[:page]).per(3)
+    @items=Item.page(params[:page]).per(5)
     #ページャ導入により.allから書き換え
     #@genre=Genre.find(params[:id])
   end
@@ -32,6 +32,12 @@ class Admin::ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @item=Item.find(params[:id])
+    @item.destroy
+    redirect_to '/admin/items'
   end
 
   private

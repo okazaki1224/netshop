@@ -8,6 +8,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def create
+    @addresses=Address.all
     @address=Address.new(address_params)
     @address.save
     redirect_to "/addresses"
@@ -21,6 +22,6 @@ class Public::AddressesController < ApplicationController
 
   private
   def address_params
-    params.require(:address).permit(:name, :address, :postal_code)
+    params.require(:address).permit(:name, :address, :postal_code, :customer_id)
   end
 end

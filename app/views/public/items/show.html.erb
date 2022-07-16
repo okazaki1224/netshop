@@ -1,2 +1,9 @@
-<h1>Public::Items#show</h1>
-<p>商品詳細</p>
+<h1>左３使ってジャンル検索</h1>
+<p>次３くらい使って画像スペースにする</p>
+<%= image_tag @item.image.variant(resize_to_limit:[200,200]) %>
+
+<p>ここから右６</p>
+
+<h1><%= @item.name %></h1>
+<h4><%= @item.introduction %></h4>
+<h4>￥<%= @item.add_tax_price %>円(税込)</h4>

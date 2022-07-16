@@ -28,7 +28,7 @@ devise_for :customers,skip: [:passwords], controllers: {
     #get 'genres/edit'
     #patch 'genres/update'
 
-   resources :items, only:[:index, :new, :create, :show, :edit, :update]
+   resources :items, only:[:index, :new, :create, :show, :edit, :update, :destroy]
     #get 'items' => 'items#index'
     #get 'items/new'
     #post 'items/create'
