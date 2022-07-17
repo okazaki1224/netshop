@@ -14,10 +14,21 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+
     @cart_item=CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
-    @cart_item.save
-    redirect_to "/cart_items"
+
+   #
+    if CartItem.exists?(item_id: @cart_item.item_id)
+
+      exist_cart_item=CartItem.find_by(item_id: @cart_item.item_id, customer_id: current_customer.id)
+      exist_cart_item.update(amount: exist_cart_item.amount+@cart_item.amount)
+      redirect_to "/cart_items"
+    else
+      @cart_item.save
+      @cart_items =current_customer.cart_items.all
+      redirect_to "/cart_items"
+    end
   end
 
   private
