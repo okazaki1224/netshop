@@ -1,9 +1,15 @@
 <h1>左３使ってジャンル検索</h1>
 <p>次３くらい使って画像スペースにする</p>
-<%= image_tag @item.image.variant(resize_to_limit:[200,200]) %>
-
-<p>ここから右６</p>
 
 <h1><%= @item.name %></h1>
 <h4><%= @item.introduction %></h4>
 <h4>￥<%= @item.add_tax_price %>円(税込)</h4>
+<%= image_tag @item.image.variant(resize_to_limit:[200,200]) %>
+
+<p>ここから右６</p>
+<%= form_with model: @cart_item, url: cart_items_path(@cart_item), local: true do |f| %>
+  <%= f.hidden_field :item_id, :value => @item.id %>
+
+  <%= f.select :amount,*[1..5],include_blank: "数量を選んでください" %>
+  <%= f.submit"カートに入れる" %>
+<% end %>
