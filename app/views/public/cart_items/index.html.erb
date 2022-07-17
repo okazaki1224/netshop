@@ -13,6 +13,7 @@
       <td><%= cart_item.item.add_tax_price %></td>
       <td><%= cart_item.amount %></td>
       <td><%= cart_item.item.add_tax_price*cart_item.amount %></td>
+      <td><%= link_to "削除する",cart_item_path(cart_item.item.id), method: :delete %></td>
     </tr>
   <% end %>
  </table>
