@@ -1,6 +1,5 @@
 <h1>ショッピングカート</h1>
 <table>
-  <% @cart_items.each do |cart_item| %>
     <tr>
       <th>商品名</th>
       <th>単価(税込)</th>
@@ -8,6 +7,7 @@
       <th>小計</th>
       <th></th>
     </tr>
+    <% @cart_items.each do |cart_item| %>
     <tr>
       <td><%= cart_item.item.name %></td>
       <td><%= cart_item.item.add_tax_price %></td>
@@ -17,3 +17,5 @@
     </tr>
   <% end %>
  </table>
+
+<%= link_to "カートを空にする",destroy_all_path, method: :delete %>

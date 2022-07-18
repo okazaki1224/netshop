@@ -8,7 +8,7 @@
 <h1>商品一覧（全●件）</h1>
 <% @items.each do |item| %>
 <table>
-  <tr><td>画像<%= image_tag item.image.variant(resize_to_limit:[200,200]) %></td></tr>
+  <tr><td><%= image_tag item.image.variant(resize_to_limit:[200,200]) %></td></tr>
   <tr><td>
     <%= link_to item_path(item.id) do %>
     <%= item.name %>

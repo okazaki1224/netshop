@@ -53,7 +53,7 @@ devise_for :customers,skip: [:passwords], controllers: {
     post '/orders/confirm' => 'public/orders#confirm'
     get '/orders/complete' => 'public/orders#complete'
 
-    delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
+    delete '/cart_items' => 'public/cart_items#destroy_all', as:"destroy_all"
 
     get 'customers/my_page' => 'public/customers#show', as:"my_page"
     get 'customers/information/edit' => 'public/customers#edit'
