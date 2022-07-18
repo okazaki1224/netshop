@@ -1,4 +1,4 @@
-<h1>ショッピングカート</h1>
+<h1>ショッピングカート</h1> <%= link_to "カートを空にする",destroy_all_path, method: :delete %>
 <table>
     <tr>
       <th>商品名</th>
@@ -7,15 +7,24 @@
       <th>小計</th>
       <th></th>
     </tr>
+    <% @total = 0 %>
     <% @cart_items.each do |cart_item| %>
     <tr>
       <td><%= cart_item.item.name %></td>
       <td><%= cart_item.item.add_tax_price %></td>
-      <td><%= cart_item.amount %></td>
-      <td><%= cart_item.item.add_tax_price*cart_item.amount %></td>
+      <%= form_with model: cart_item, url: cart_items_path(cart_item), local: true do |f| %>
+      <td><%= f.select :amount,*[1..20],include_blank: true %></td>
+      <% end %>
+      <td><%= cart_item.subtotal %></td>
+
+      <% @total += cart_item.subtotal %>
+
       <td><%= link_to "削除する",cart_item_path(cart_item.item.id), method: :delete %></td>
+
     </tr>
+
   <% end %>
  </table>
+<h3>合計金額　<%= @total %>円</h3>
+ <%= link_to "買い物を続ける", items_path %>
 
-<%= link_to "カートを空にする",destroy_all_path, method: :delete %>

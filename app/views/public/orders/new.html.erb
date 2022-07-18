@@ -1,2 +1,22 @@
 <h1>注文情報入力</h1>
-<h2>支払方法</h2>
+<%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
+  <table>
+    <tr><td><h2>支払方法</h2></td></tr>
+      <tr><td><%= f.radio_button:payment_method, :credit_card %>
+      <%= f.label:payment_method, "クレジットカード", value:0 %></td></tr>
+      <tr><td><%= f.radio_button:payment_method, :transfer %>
+      <%= f.label:payment_method, "銀行振込", value:1 %></td></tr>
+    <tr><td><h2>お届け先</h2></td></tr>
+      <tr><td>
+        <%= f.radio_button:address, :main_address %>
+        <%= f.label:address, "ご自身の住所", value:0 %></br>
+        〒<%= current_customer.postal_code %> <%= current_customer.address %></br>
+        <%= current_customer.last_name %><%= current_customer.first_name %>
+      </td></tr>
+      <tr><td><%= f.radio_button:address, :sub_address %>
+      <%= f.label:address, "登録済住所から選択", value:1 %></td></tr>
+      <tr><td><%= f.radio_button:address, :new_address %>
+      <%= f.label:address, "新しいお届け先", value:2 %></td></tr>
+  </table>
+
+<% end %>

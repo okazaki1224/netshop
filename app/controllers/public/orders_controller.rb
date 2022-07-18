@@ -1,14 +1,12 @@
 class Public::OrdersController < ApplicationController
   def new
+    #@customer=Customer.find(params[:id])
   end
 
   def confirm
   end
 
   def complete
-  end
-
-  def create
   end
 
   def index

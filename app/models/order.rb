@@ -11,5 +11,11 @@ class Order < ApplicationRecord
     preparing:3,
     shipped:4
   }
+  
+  enum address:{
+    main_address:0,
+    sub_address:1,
+    new_address
+  }
 
 end
