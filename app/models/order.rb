@@ -15,7 +15,7 @@ class Order < ApplicationRecord
   enum address:{
     main_address:0,
     sub_address:1,
-    new_address
+    new_address:2
   }
 
 end

@@ -1,45 +1,40 @@
 <h1>配送先一覧/登録</h1>
-<%= form_with model: @address, url: addresses_path do |f| %>
 <table>
+  <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
+
   <tr>
     <td>郵便番号(ハイフンなし)</td>
-    <td><%= f.number_field :postal_code %></td>
+    <td><%= f.number_field :postal_code, :placeholder => "0000000" %></td>
   </tr>
   <tr>
     <td>住所</td>
-    <td><%= f.text_field :address %></td>
+    <td><%= f.text_field :address, :placeholder => "東京都千代田区1-1" %></td>
   </tr>
   <tr>
     <td>宛名</td>
-    <td><%= f.text_field :name %></td>
+    <td><%= f.text_field :name, :placeholder => "令和太郎" %></td>
     <td><%= f.submit "新規登録" %></td>
   </tr>
+  <% end %>
 </table>
-<% end %>
+
 
 <table border="1" style="border-collapse: collapse">
   <tr>
     <td>郵便番号</td>
     <td>住所</td>
     <td>宛名</td>
-    <td></td>
+
   </tr>
   <% @addresses.each do |address| %>
     <tr>
       <td><%= address.postal_code %></td>
       <td><%= address.address %></td>
       <td><%= address.name %></td>
+      <td>
+        <%= link_to "編集する緑ボ",edit_address_path(address.id) %> <%= link_to "削除する赤ボ",address_path(address.id), method: :delete %>
+
+      </td>
     </tr>
   <% end %>
-</table>
-
-<table>
-  <tr>
-    <td>配送先</td>
-    <td><%= link_to '一覧を見る',addresses_path %></td>
-  </tr>
-  <tr>
-    <td>注文履歴</td>
-    <td><%= link_to '一覧を見る',orders_path %></td>
-  </tr>
 </table>
