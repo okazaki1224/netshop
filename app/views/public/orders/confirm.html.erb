@@ -1,1 +1,25 @@
-<p>注文情報確認画面</p>
+<h1>注文情報確認画面</h1>
+
+<table>
+  <tr>
+    <td><h3>支払方法</h3></td>
+    <td><% if Order.payment_methods == 0 %>
+        Order.payment_methods_i18n[:credit_card]
+        <% else %>
+        Order.payment_methods_i18n[:transfer]
+        <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td><h3>お届け先</h3></td>
+    <td><% if Order.addresses == 0 %>
+        Order.addresses_i18n[:main_address]
+        <% elsif Order.addresses == 1 %>
+        Order.addresses_i18n[:sub_address]
+        <% else %>
+        Order.addresses_i18n[:new_address]
+        <% end %>
+    </td>
+  </tr>
+
+</table>

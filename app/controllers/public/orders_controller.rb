@@ -1,17 +1,20 @@
 class Public::OrdersController < ApplicationController
   def new
     #@customer=Customer.find(params[:id])
+    @order=Order.new
   end
 
-  def confirm
+  def confirm#注文情報確認画面
+    @cart_item=CartItem.all
+    @cart_items=CartItem.all
   end
 
-  def complete
+  def complete#サンクス画面
   end
 
-  def index
+  def index#注文履歴画面
   end
 
-  def show
+  def show#注文履歴詳細画面
   end
 end
