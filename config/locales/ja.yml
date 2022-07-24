@@ -10,7 +10,7 @@ ja:
         making: "製作中"
         preparing: "発送準備中"
         shipped: "発送済み"
-      address:
+      address_number:
         main_address: "ご自身の住所"
         sub_address: "登録済住所から選択"
         new_address: "新しいお届け先"

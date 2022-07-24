@@ -12,7 +12,7 @@ class Order < ApplicationRecord
     shipped:4
   }
 
-  enum address:{
+  enum address_number:{
     main_address:0,
     sub_address:1,
     new_address:2

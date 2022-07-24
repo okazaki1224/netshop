@@ -10,10 +10,10 @@ class Public::OrdersController < ApplicationController
       @order.postal_code=current_customer.postal_code
       @order.address=current_customer.address
       @order.name=current_customer.first_name+current_customer.last_name
-    elsif params[:order][:address_number]== "1"#登録済み住所
+    elsif params[:order][:address_number] == "1"#登録済み住所
       @order.postal_code=Address.find(params[:order][:address_id]).postal_code
-      @order.address=
-      @order.name=
+      @order.address=Address.find(params[:order][:address_id]).address
+      @order.name=Address.find(params[:order][:address_id]).name
     else params[:order][:address_number] == "2"#新しい住所
       @address=Address.new
       @address.postal_code=params[:order][:postal_code]
@@ -22,8 +22,8 @@ class Public::OrdersController < ApplicationController
       @address.customer_id=current_customer.id
       if @address.save
         @order.postal_code=@address.postal_code
-        @order.address=
-        @order.name=
+        @order.address=@address.address
+        @order.name=@address.name
       else
           render :new
       end
@@ -41,6 +41,6 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :address, :postal_code, :name, :select_address, :address_id)
+    params.require(:order).permit(:payment_method, :address, :postal_code, :name, :select_address)
   end
 end

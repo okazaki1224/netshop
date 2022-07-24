@@ -6,7 +6,7 @@
     <th>数量</th>
     <th>小計</th>
   </tr>
-  
+  <% @total = 0 %>
   <% @cart_items.each do |cart_item| %>
   <tr>
     <td><%= cart_item.item.name %></td>
@@ -20,15 +20,15 @@
 <table>
   <tr>
     <th>送料</th>
-    <td>800</td>
+    <td>800？</td>
   </tr>
   <tr>
     <th>商品合計</th>
-    <td></td>
+    <td><% @total += cart_item.subtotal %></td>
   </tr>
   <tr>
     <th>請求金額</th>
-    <td></td>
+    <td>@total</td>
   </tr>
 </table>
 
@@ -36,22 +36,16 @@
   <tr>
     <td><h3>支払方法</h3></td>
     <td><% if Order.payment_methods == 0 %>
-        Order.payment_methods_i18n[:credit_card]
+        クレジットカード(Order.payment_methods_i18n[:credit_card])
         <% else %>
-        Order.payment_methods_i18n[:transfer]
+        銀行振込(Order.payment_methods_i18n[:transfer])
         <% end %>
     </td>
   </tr>
   <tr>
     <td><h3>お届け先</h3></td>
     <td>
-      <% if order.select_address == 0 %>
-        @order.postal_code @order.address @order.name
-      <% elsif order.select_address == 1 %>
-        @address
-      <% else %>
-        @order.postal_code @order.address @order.name
-      <% end %>
+      <%= @order.postal_code %><%= @order.address %><%= @order.name %>
     </td>
   </tr>
 
