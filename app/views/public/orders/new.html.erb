@@ -12,8 +12,8 @@
     </td></tr>
     <tr><td><h2>お届け先</h2></td></tr>
     <tr><td>
-      <%= f.radio_button:address, Order.addresses.key(0) %>
-      <%= f.label:address, Order.addresses_i18n[:main_address] %></br>
+      <%= f.radio_button:address_number, 0 %>
+      <%= f.label:address_number, Order.addresses_i18n[:main_address] %></br>
       〒<%= current_customer.postal_code %> <%= current_customer.address %></br>
       <%= current_customer.last_name %><%= current_customer.first_name %>
     </td></tr>

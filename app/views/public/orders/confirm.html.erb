@@ -1,4 +1,36 @@
 <h1>注文情報確認画面</h1>
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+  </tr>
+  
+  <% @cart_items.each do |cart_item| %>
+  <tr>
+    <td><%= cart_item.item.name %></td>
+    <td><%= cart_item.item.add_tax_price %></td>
+    <td><%= cart_item.item.amount %></td>
+    <td><%= cart_item.item.add_tax_price*cart_item.item.amount %></td>
+  </tr>
+  <% end %>
+</table>
+
+<table>
+  <tr>
+    <th>送料</th>
+    <td>800</td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td></td>
+  </tr>
+  <tr>
+    <th>請求金額</th>
+    <td></td>
+  </tr>
+</table>
 
 <table>
   <tr>
@@ -12,13 +44,14 @@
   </tr>
   <tr>
     <td><h3>お届け先</h3></td>
-    <td><% if Order.addresses == 0 %>
-        Order.addresses_i18n[:main_address]
-        <% elsif Order.addresses == 1 %>
-        Order.addresses_i18n[:sub_address]
-        <% else %>
-        Order.addresses_i18n[:new_address]
-        <% end %>
+    <td>
+      <% if order.select_address == 0 %>
+        @order.postal_code @order.address @order.name
+      <% elsif order.select_address == 1 %>
+        @address
+      <% else %>
+        @order.postal_code @order.address @order.name
+      <% end %>
     </td>
   </tr>
 
