@@ -9,7 +9,7 @@ class Public::OrdersController < ApplicationController
     if params[:order][:address_number] == "0" #自身の住所、enum address:{main_address:0,sub_address:1,new_address:2}
       @order.postal_code=current_customer.postal_code
       @order.address=current_customer.address
-      @order.name=current_customer.first_name+current_customer.last_name
+      @order.name=current_customer.last_name+current_customer.first_name
     elsif params[:order][:address_number] == "1"#登録済み住所
       @order.postal_code=Address.find(params[:order][:address_id]).postal_code
       @order.address=Address.find(params[:order][:address_id]).address
@@ -28,12 +28,32 @@ class Public::OrdersController < ApplicationController
           render :new
       end
     end
+    @cart_items=CartItem.all
+  end
+
+  def create
+    @order = Order.new(order_params)
+    @order.customer_id=current_customer.id
+    @order.save
+    @cart_items = current_customer.cart_items.all
+    @cart_items.each do |cart_item|
+      order_detail=OrderDetail.new
+      order_detail.item_id=cart_item.item_id
+      order_detail.amount=cart_item.amount
+      order_detail.purchase_price=cart_item.item.price
+      order_detail.order_id=@order.id
+      order_detail.save
+    end
+    @cart_items.destroy_all
+    redirect_to complete_path
+
   end
 
   def complete#サンクス画面
   end
 
   def index#注文履歴画面
+  @orders=Order.all
   end
 
   def show#注文履歴詳細画面
@@ -41,6 +61,7 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :address, :postal_code, :name, :select_address)
+    params.require(:order).permit(:payment_method, :address, :postal_code, :name, :total_payment, :shipping_cost)
   end
+
 end
