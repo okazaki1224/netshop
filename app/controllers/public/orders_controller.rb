@@ -37,12 +37,13 @@ class Public::OrdersController < ApplicationController
     @order.save
     @cart_items = current_customer.cart_items.all
     @cart_items.each do |cart_item|
-      order_detail=OrderDetail.new
-      order_detail.item_id=cart_item.item_id
-      order_detail.amount=cart_item.amount
-      order_detail.purchase_price=cart_item.item.price
-      order_detail.order_id=@order.id
-      order_detail.save
+      @order_details=@order.order_details.new
+      @order_details.order_id=@order.id
+      @order_details.item_id=cart_item.item.id
+      @order_details.amount=cart_item.amount
+      @order_details.purchase_price=cart_item.item.price
+      #@order_detail.making_status=
+      @order_details.save
     end
     @cart_items.destroy_all
     redirect_to complete_path
@@ -59,7 +60,7 @@ class Public::OrdersController < ApplicationController
   def show#注文履歴詳細画面
   @order=Order.find(params[:id])
   @orders=Order.all
-  #@cart_items=CartItem.all
+  @order_details=@order.order_details.all
   end
 
   private
