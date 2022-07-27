@@ -5,7 +5,7 @@
 <p>キャンディ</p>
 <p>１挟む</p>
 
-<h1>商品一覧（全●件）</h1>
+<h1>商品一覧（全<%= @items.count %>件）</h1>
 <% @items.each do |item| %>
 <table>
   <tr><td><%= image_tag item.image.variant(resize_to_limit:[200,200]) %></td></tr>

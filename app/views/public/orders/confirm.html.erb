@@ -1,10 +1,10 @@
 <h1>注文情報確認画面</h1>
-<table>
+<table border="1" style="border-collapse: collapse">
   <tr>
-    <th>商品名</th>
-    <th>単価(税込)</th>
-    <th>数量</th>
-    <th>小計</th>
+    <th>商品名        </th>
+    <th>単価(税込)   </th>
+    <th>数量     </th>
+    <th>小計     </th>
   </tr>
   <% @total = 0 %>
   <% @cart_items.each do |cart_item| %>
@@ -18,7 +18,7 @@
   <% end %>
 </table>
 
-<table>
+<table border="1" style="border-collapse: collapse">
   <tr>
     <th>送料</th>
     <td>800</td>
@@ -37,12 +37,7 @@
   <tr>
     <td><h3>支払方法</h3></td>
     <td>
-      <%#別解 @Order.payment_method_i18n %>
-      <% if @order.payment_method == "credit_card" %>
-        クレジットカード
-      <% else %>
-        銀行振込
-      <% end %>
+      <%= @order.payment_method_i18n %>
     </td>
   </tr>
   <tr>

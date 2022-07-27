@@ -39,6 +39,7 @@ devise_for :customers,skip: [:passwords], controllers: {
     #get 'homes/top'
     root to: 'homes#top'
   end
+
 get '/orders/complete' => 'public/orders#complete', as:"complete"
   scope module: :public do
     resources :items, only:[:index, :show]
@@ -51,7 +52,6 @@ get '/orders/complete' => 'public/orders#complete', as:"complete"
     get '/about' => 'public/homes#about'
 
     post '/orders/confirm' => 'public/orders#confirm'
-
 
     delete '/cart_items' => 'public/cart_items#destroy_all', as:"destroy_all"
 
