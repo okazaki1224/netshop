@@ -1,5 +1,5 @@
-<h1>Public::Orders#index</h1>
-<p>注文履歴一覧</p>
+<h1>注文履歴一覧</h1>
+<p>　</p>
 <table border="1" style="border-collapse: collapse">
   <tr>
     <th>注文日</th>
@@ -11,10 +11,10 @@
   </tr>
   <% @orders.each do |order| %>
   <tr>
-    <td><%= order.created_at %></td>
+    <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
     <td>
       〒<%= order.postal_code %></br>
-      <%= order.address %>
+      <%= order.address %></br>
       <%= order.name %>
     </td>
     <td>

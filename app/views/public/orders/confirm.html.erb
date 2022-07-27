@@ -36,7 +36,7 @@
 <table>
   <tr>
     <td><h3>支払方法</h3></td>
-    <%#別解 %>
+    <%#別解 @Order.payment_method_i18n %>
     <td><% if @order.payment_method == "credit_card" %>
         クレジットカード
         <% else %>

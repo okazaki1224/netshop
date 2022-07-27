@@ -57,6 +57,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def show#注文履歴詳細画面
+  @order=Order.find(params[:id])
+  @orders=Order.all
+  #@cart_items=CartItem.all
   end
 
   private
