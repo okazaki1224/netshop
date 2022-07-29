@@ -1,8 +1,5 @@
 <h1>左３使ってジャンル検索</h1>
-<p>ケーキ</p>
-<p>焼き菓子</p>
-<p>プリン</p>
-<p>キャンディ</p>
+<%= render 'public/items/list', genres: @genres %>
 <p>１挟む</p>
 
 <h1>ここから右８</h1>
@@ -12,5 +9,16 @@
 購入には会員登録が必要になります。</p>
 
 <h2>新着商品</h2>
-<p>写真幅２、商品名、金額</p>
-<p>全ての商品を見る＞リンク</p>
+
+<% @items.each do |item| %>
+<table>
+  <tr><td><%= image_tag item.image.variant(resize_to_limit:[200,200]) %></td></tr>
+  <tr><td>
+    <%= link_to item_path(item.id) do %>
+    <%= item.name %>
+    <% end %>
+  </td></tr>
+  <tr><td>￥<%= item.price.to_s(:delimited, delimiter: ',') %></td></tr>
+</table>
+<% end %>
+<%=link_to "全ての商品を見る",items_path %>
