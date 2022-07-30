@@ -16,7 +16,7 @@ devise_for :customers,skip: [:passwords], controllers: {
     #get 'orders/show'
     #patch 'orders/update'
 
-   resources :customers, only:[:index, :edit, :update]
+   resources :customers, only:[:index, :edit, :update, :show]
     #get 'customers' => 'customers#index'
     #get 'customers/show'
     #get 'customers/edit'
@@ -49,7 +49,7 @@ get '/orders/complete' => 'public/orders#complete', as:"complete"
   end
 
     root to: 'public/homes#top'
-    get '/about' => 'public/homes#about'
+    get '/about' => 'public/homes#about', as: "about"
 
     post '/orders/confirm' => 'public/orders#confirm'
 

@@ -3,5 +3,6 @@ class Admin::HomesController < ApplicationController
     @orders=Order.page(params[:page]).per(10)
     #ページャ導入により.allから書き換え
     #.per10は要検証
+    #@order=Order.find(params[:id])
   end
 end

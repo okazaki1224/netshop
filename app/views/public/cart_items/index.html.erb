@@ -15,8 +15,7 @@
       <td><%= cart_item.item.add_tax_price %></td>
       <%= form_with model: cart_item, url: cart_item_path(cart_item.id), local: true do |f| %>
       <td>
-        <%= f.select :amount,*[1..20],include_blank: true %>
-        <%= f.submit "更新" %>
+        <%= f.select :amount,*[1..20],include_blank: true %><%= f.submit "更新" %>
       </td>
       <% end %>
       <td><%= cart_item.subtotal %></td>
