@@ -5,7 +5,11 @@
 <h1><%= @item.name %></h1>
 <h4><%= @item.introduction %></h4>
 <h4>￥<%= @item.add_tax_price %>円(税込)</h4>
-<%= image_tag @item.image.variant(resize_to_limit:[200,200]) %>
+<% if @item.image.present? %>
+  <%= image_tag @item.image.variant(resize_to_limit:[200,200]) %>
+<% else %>
+  <%= image_tag 'no_image.jpg'%>
+<% end %>
 
 <p>ここから右６</p>
 <%= form_with model: @cart_item, url: cart_items_path(@cart_item), local: true do |f| %>

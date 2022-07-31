@@ -59,7 +59,7 @@ get '/orders/complete' => 'public/orders#complete', as:"complete"
     get 'customers/information/edit' => 'public/customers#edit'
     patch 'customers/information' => 'public/customers#update'
     get 'customers/unsubscribe' => 'public/customers#unsubscribe'
-    patch 'customers/withdraw' => 'public/customers#withdraw'
+    patch 'customers/withdraw' => 'public/customers#withdraw', as:"withdraw"
 
 
 

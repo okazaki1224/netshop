@@ -10,7 +10,11 @@
   </tr>
   <tr>
     <td>配送先</td>
-    <td>〒<%= @order_detail.order.postal_code %> <%= @order_detail.order.address %></br><% @order_detail.order.name %></td>
+    <td>
+      〒<%= @order_detail.order.postal_code %>
+      <%= @order_detail.order.address %></br>
+      <% @order_detail.order.name %>
+    </td>
   </tr>
   <tr>
     <td>支払方法</td>
@@ -35,15 +39,16 @@
     <th>小計　　　　　</th>
     <th>製作ステータス</th>
   </tr>
-  <% @order_details.each do |order_detail| %>
+  <% @order.order_details.each do |order_detail| %>
   <tr>
     <td><%= order_detail.item.name %></td>
     <td><%= order_detail.purchase_price %></td>
     <td><%= order_detail.amount %></td>
     <td><%= order_detail.purchase_price*order_detail.amount %></td>
-    <%= form_with model: @order, url: admin_order_path(@order.id), local: true, method: :patch do |f| %>
-    <td><%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %></td>
-    <td><%= f.submit '更新' %></td>
+    <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), local: true, method: :patch do |f| %>
+  <%#フォームURLでorder_detail.idを取得すると書いているのでｺﾝﾄﾛｰﾗでもorder_detail.idを取得する%>  
+      <td><%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %></td>
+      <td><%= f.submit '更新' %></td>
     <% end %>
   </tr>
 
