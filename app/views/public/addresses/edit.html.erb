@@ -1,19 +1,21 @@
 <h1>配送先編集</h1>
+<div class="col-md-9">
 <table>
   <%= form_with model: @address, url: address_path, method: :patch do |f| %>
 
   <tr>
-    <td>郵便番号(ハイフンなし)</td>
-    <td><%= f.number_field :postal_code, :placeholder => "0000000" %></td>
+    <td class="w-25">郵便番号(ハイフンなし)</td>
+    <td class="w-25"><%= f.number_field :postal_code, :placeholder => "0000000" %></td>
   </tr>
   <tr>
-    <td>住所</td>
-    <td><%= f.text_field :address, :placeholder => "東京都千代田区1-1" %></td>
+    <td class="w-25">住所</td>
+    <td class="w-50"><%= f.text_field :address, :placeholder => "東京都千代田区1-1", size: "50" %></td>
   </tr>
   <tr>
-    <td>宛名</td>
-    <td><%= f.text_field :name, :placeholder => "令和太郎" %></td>
-    <td><%= f.submit "変更内容を保存" %></td>
+    <td class="w-25">宛名</td>
+    <td class="w-25"><%= f.text_field :name, :placeholder => "令和太郎" %></td>
+    <td><%= f.submit "変更内容を保存" ,class:"btn btn-success" %></td>
   </tr>
   <% end %>
 </table>
+<div>

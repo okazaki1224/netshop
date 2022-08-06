@@ -1,6 +1,6 @@
-<h1>会員一覧</h1>
-
-<table>
+<div><h3>　会員一覧</h3></div>
+<div class="nav justify-content-center">
+  <table class="col-md-9">
   <tr>
     <th>会員ID</th>
     <th>氏名</th>
@@ -17,13 +17,15 @@
     </td>
     <td><%= customer.email %></td>
     <td><% if customer.is_deleted==false %>
-        有効
+        <p class="text-success">有効</p>
         <% else%>
-        退会
+        <p>退会</p>
         <% end %>
     </td>
   </tr>
   <% end %>
 </table>
+</div>
+
 
 <%= paginate @customers %>

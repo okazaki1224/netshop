@@ -1,30 +1,33 @@
-<h1>左３使ってジャンル検索</h1>
-<%= render 'public/items/list', genres: @genres %>
-<p>１挟む</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'public/items/list', genres: @genres %>
+    </div>
 
-<h1>ここから右８</h1>
-<p>ようこそ、ながのCAKEへ！<br>
-このサイトは、ケーキ販売のECサイトになります。<br>
-会員でない方も商品の閲覧はできますが、<br>
-購入には会員登録が必要になります。</p>
+    <div class="col-md-9 ">
+      <p>ようこそ、ながのCAKEへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。</p>
 
-<h2>新着商品</h2>
+      <h2>新着商品</h2>
+      <div class="d-flex flex-wrap card-img-top">
+        <% @items.each do |item| %>
+          <div class="mb-3">
+            <% if item.image.present? %>
+              <%= image_tag item.image,style: "height: 150px; width: 100%; display: block;" %>
+            <% else %>
+              <%= image_tag 'no_image.jpg'%>
+            <% end %></br>
+            <p><%= link_to item_path(item.id) do %>
+              <%= item.name %>
+            <% end %></p>
+            <p>￥<%= item.price.to_s(:delimited, delimiter: ',') %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<% @items.each do |item| %>
-<table>
-  <tr><td>
-    <% if item.image.present? %>
-      <%= image_tag item.image.variant(resize_to_limit:[200,200]) %>
-    <% else %>
-      <%= image_tag 'no_image.jpg'%>
-    <% end %>
-  </td></tr>
-  <tr><td>
-    <%= link_to item_path(item.id) do %>
-    <%= item.name %>
-    <% end %>
-  </td></tr>
-  <tr><td>￥<%= item.price.to_s(:delimited, delimiter: ',') %></td></tr>
-</table>
-<% end %>
-<%=link_to "全ての商品を見る",items_path %>
+
+</duv>

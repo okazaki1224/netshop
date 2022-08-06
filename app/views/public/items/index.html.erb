@@ -1,23 +1,29 @@
-<h1>左３使ってジャンル検索</h1>
-<%= render 'list', genres: @genres %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'list', genres: @genres %>
+    </div>
 
-<p>１挟む</p>
+    <div class="col-md-9">
+      <h1>商品一覧（全<%= @items.count %>件）</h1>
+      <div class="d-flex flex-wrap"> 
+        <% @items.each do |item| %>
+        <div class="w-25 mb-3">
+          <% if item.image.present? %>
+            <%= image_tag item.image.variant(resize_to_limit:[200,200]) %>
+          <% else %>
+            <%= image_tag 'no_image.jpg' %>
+          <% end %>
 
-<h1>商品一覧（全<%= @items.count %>件）</h1>
-<% @items.each do |item| %>
-<table>
-  <tr><td>
-    <% if item.image.present? %>
-      <%= image_tag item.image.variant(resize_to_limit:[200,200]) %>
-    <% else %>
-      <%= image_tag 'no_image.jpg'%>
-    <% end %>
-  </td></tr>
-  <tr><td>
-    <%= link_to item_path(item.id) do %>
-    <%= item.name %>
-    <% end %>
-  </td></tr>
-  <tr><td>￥<%= item.price %></td></tr>
-</table>
-<% end %>
+          <div>
+            <%= link_to item_path(item.id) do %>
+              <%= item.name %>
+            <% end %></br>
+            <p>￥<%= item.price %></p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

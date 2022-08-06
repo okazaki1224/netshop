@@ -21,9 +21,9 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "ログイン、青ボタン" %>
+    <%= f.submit "ログイン",class:"btn btn-primary" %>
   </div>
 <% end %>
 
 <h4>会員登録がお済みでない方</h4>
-<%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。
+<span><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</span>
