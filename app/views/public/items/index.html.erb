@@ -6,11 +6,11 @@
 
     <div class="col-md-9">
       <h1>商品一覧（全<%= @items.count %>件）</h1>
-      <div class="d-flex flex-wrap"> 
+      <div class="d-flex flex-wrap">
         <% @items.each do |item| %>
-        <div class="w-25 mb-3">
+        <div class="mb-3">
           <% if item.image.present? %>
-            <%= image_tag item.image.variant(resize_to_limit:[200,200]) %>
+            <%= image_tag item.image,style: "height: 150px; width: 100%; display: block;" %>
           <% else %>
             <%= image_tag 'no_image.jpg' %>
           <% end %>
@@ -20,6 +20,10 @@
               <%= item.name %>
             <% end %></br>
             <p>￥<%= item.price %></p>
+            <% if item.is_active==false %>
+              販売停止中
+            <% end %>
+      </td>
           </div>
         </div>
         <% end %>

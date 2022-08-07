@@ -11,7 +11,7 @@
       購入には会員登録が必要になります。</p>
 
       <h2>新着商品</h2>
-      <div class="d-flex flex-wrap card-img-top">
+      <div class="d-flex flex-wrap">
         <% @items.each do |item| %>
           <div class="mb-3">
             <% if item.image.present? %>
@@ -23,8 +23,13 @@
               <%= item.name %>
             <% end %></p>
             <p>￥<%= item.price.to_s(:delimited, delimiter: ',') %></p>
+            <% %>
           </div>
         <% end %>
+      </div>
+
+      <div class="col-md-4 offset-md-8">
+        <%= link_to "全ての商品を見る≫", items_path %>
       </div>
     </div>
   </div>
