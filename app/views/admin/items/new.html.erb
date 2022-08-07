@@ -1,9 +1,6 @@
 <h1>新規商品登録</h1>
-<table>
-  <tr>
-    <td><h4>商品画像</h4></td>
-  </tr>
 <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
+<table>
   <tr>
     <td><h4>商品画像</h4></td>
     <td><%= f.file_field :image, accept:"image/*" %></td>
@@ -34,8 +31,15 @@
       <%= f.radio_button:is_active, false %>
     </td>
   </tr>
+  <tr>
+    <td></td>
+    <td>
+      <%= f.submit '新規登録',class:"btn btn-success" %>
+
+    </td>
+  </tr>
 </table>
-  <%= f.submit '新規登録' %>
-    <% end %>
+<% end %>
+
 
 
