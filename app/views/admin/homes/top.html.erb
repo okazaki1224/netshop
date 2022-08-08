@@ -16,7 +16,7 @@
       <%= order.created_at.strftime('%Y/%m/%d %H:%M') %>
       <% end %>
     </td>
-    <td><%= order.name %></td>
+    <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
     <td>
       <% @total = 0 %>
       <% order.order_details.each do |detail| %>
@@ -29,4 +29,6 @@
   <% end %>
 </table>
 </div>
-
+<div class="nav justify-content-center">
+<%= paginate @orders %>
+</div>

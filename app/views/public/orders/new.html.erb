@@ -22,7 +22,7 @@
     <tr><td>
       <%= f.radio_button:address_number, 1 %>
       <%= f.label:address_number, Order.address_numbers_i18n[:sub_address] %>
-      <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+      <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses.all, :id, :address_display) %>
     </td></tr>
 
     <tr><td>

@@ -1,8 +1,8 @@
 <h3>配送先登録/一覧</h3>
 <div class="container">
   <div class="row">
+    <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
       <table>
-        <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
         <tr>
           <td>郵便番号(ハイフンなし)</td>
           <td><%= f.number_field :postal_code, :placeholder => "1234567" %></td>
@@ -16,8 +16,8 @@
           <td><%= f.text_field :name, :placeholder => "令和太郎" %></td>
           <td><%= f.submit "新規登録",class:"btn btn-success" %></td>
         </tr>
-        <% end %>
       </table>
+    <% end %>
   </div>
   <div class="row">
       <table border="1" style="border-collapse: collapse" class="col-md-10">
