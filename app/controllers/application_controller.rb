@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
       admin_session_path
     elsif resource == :customer
       root_path
-    else
-      about_path
     end
   end
 

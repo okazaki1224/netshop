@@ -12,8 +12,9 @@ class Admin::OrdersController < ApplicationController
     if @order.order_status=="paid_up"
       @order.order_details.each do |order_detail|
         order_detail.update(making_status:1)
-      endw
+      end
     end
+    
     redirect_to admin_order_path(@order.id)
 
   end

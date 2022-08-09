@@ -2,6 +2,7 @@
 <div class="container">
   <div class="row">
     <div  class="col-md-10">
+    <%= form_with model: @order, url: admin_order_path(@order.id), local: true, method: :patch do |f| %>
     <table>
       <tr>
         <td>購入者</td>
@@ -25,7 +26,7 @@
       </tr>
       <tr>
         <td>注文ステータス</td>
-        <%= form_with model: @order, url: admin_order_path(@order.id), local: true, method: :patch do |f| %>
+
         <td>
           <%= f.select :order_status, Order.order_statuses_i18n.invert %>
           <%= f.submit "更新",class:"btn btn-success" %>
