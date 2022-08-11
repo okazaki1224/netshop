@@ -12,7 +12,11 @@ class Public::ItemsController < ApplicationController
   def show
     @item=Item.find(params[:id])
     @cart_item=CartItem.new
+    #if @itemの数量が選択されていなかったら
+      #render :show
+    #end
     @genres=Genre.all
+
   end
 
   private

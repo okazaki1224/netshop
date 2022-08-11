@@ -5,6 +5,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm#注文情報確認画面
+    @customer=current_customer
     @order=Order.new(order_params)
 
     if params[:order][:address_number] == "0" #自身の住所、enum address:{main_address:0,sub_address:1,new_address:2}
@@ -26,10 +27,10 @@ class Public::OrdersController < ApplicationController
         @order.address=@address.address
         @order.name=@address.name
       else
-          render :new
+        render :new
       end
     end
-    @cart_items=CartItem.all
+    #@cart_items=CartItem.all
   end
 
   def create

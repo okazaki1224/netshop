@@ -1,8 +1,7 @@
 <h1>配送先編集</h1>
 <div class="col-md-9">
+   <%= form_with model: @address, url: address_path, method: :patch do |f| %>
 <table>
-  <%= form_with model: @address, url: address_path, method: :patch do |f| %>
-
   <tr>
     <td class="w-25">郵便番号(ハイフンなし)</td>
     <td class="w-25"><%= f.number_field :postal_code, :placeholder => "0000000" %></td>

@@ -9,7 +9,7 @@
       <th>小計     </th>
     </tr>
   <% @total = 0 %>
-  <% @cart_items.each do |cart_item| %>
+  <% current_customer.cart_items.each do |cart_item| %>
     <tr>
       <td>
         <%= image_tag cart_item.item.image.variant(resize_to_limit:[50,50]) %>
